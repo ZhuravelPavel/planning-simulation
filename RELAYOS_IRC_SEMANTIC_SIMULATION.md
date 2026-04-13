@@ -81,15 +81,6 @@
 
 ---
 
-### Architecture
-
-┌─────────────────────────────────────────────────────┐ │ USER PLATFORMS │ │ │ │ ┌──────────────────┐ ┌──────────────────┐ │ │ │ BDSMLR.com │ │ ISC │ │ │ │ (React website) │ │ (website) │ │ │ │ 66K MAU │ │ ~40K MAU │ │ │ │ │ │ │ │ │ │ "Get Premium" │ │ "Get Premium" │ │ │ │ button │ │ button │ │ │ └────────┬─────────┘ └────────┬─────────┘ │ │ │ User already logged in │ │ │ │ (synced accounts) │ │ │ └────────────┬────────────────┘ │ └────────────────────────┼───────────────────────────┘ │ Redirect to checkout │ (SSO - no account creation) ▼ ┌────────────────────────────────────┐ │ NEW WordPress Instance │ │ subscriptions.relayos.com (TBD) │ │ ┌──────────────────────────────┐ │ │ │ WordPress 6.8 │ │ │ │ + WooCommerce │ │ │ │ + WooCommerce Subscriptions │ │ │ │ + Stripe Gateway │ │ │ │ ───────────────────────── │ │ │ │ ONE Product: │ │ │ │ "RelayOS Premium" │ │ │ │ $12/month │ │ │ └──────────────────────────────┘ │ │ │ │ REST API: │ │ /wp-json/relayos/v1/ │ │ check-subscription/{user_id} │ │ │ │ Returns: { │ │ "subscribed": true/false, │ │ "plan": "premium", │ │ "expires": "2026-05-06" │ │ } │ └───────────────┬─────────────────────┘ │ │ Subscription status check │ (cached 5-10 min) ▼ ┌────────────────────────────────────┐ │ RelayOS IRC Client │ │ (Existing, needs stability) │ │ ┌──────────────────────────────┐ │ │ │ KiwiIRC (web interface) │ │ │ │ InspIRCd (IRC server) │ │ │ │ Anope (IRC services) │ │ │ │ KiwiBNC (always-on bouncer) │ │ │ │ Jitsi (video conferencing) │ │ │ │ WebIRC Gateway │ │ │ └──────────────────────────────┘ │ │ │ │ Checks WordPress API: │ │ IF subscribed → Enable premium │ │ IF not → Free tier only │ └─────────────────────────────────────┘ │ │ Users access via: ┌───────────┴───────────┐ ▼ ▼ chat.bdsmlr.com chat.isexychat.com (RelayOS instance) (RelayOS instance)
-Both de-indexed from search engines
-(robots.txt + noindex meta tags)
-
-
----
-
 ### Tech Stack
 
 **NEW WordPress Subscription Platform:**
